@@ -104,7 +104,7 @@ class Emailer:
         isDone = False
         self.body = "Content-Type: multipart/mixed; boundary=\"boundary-string\"" + "\n"
         while(not isDone):
-            choice = input("Would you like to send an text [text] or html [html] email? If you are done, enter 'done': ")
+            choice = input("Would you like to include a text [text] or html [html] email? If you are done, enter 'done': ")
             if(choice == "done"):
                 self.body += "--boundary-string--" + "\n"
                 isDone = True
