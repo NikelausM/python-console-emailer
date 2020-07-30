@@ -10,7 +10,7 @@ class Encryption(Enum):
     SSL = "ssl"
     TLS = "tls"
 
-# Emails with GMAIL
+# Email ports
 # port 465 for SSL encryption
 # port 587 for TLS encryption
 class Port(IntEnum):
@@ -20,6 +20,7 @@ class Port(IntEnum):
 # Emailer class
 class Emailer:
     def validateEmail(self, email):
+        "Validate that email is grammatically correct. Does not check if it actually exists."
         if(re.match(r"[^@]+@[^@]+\.[^@]+", email)):
             return True
         else:
