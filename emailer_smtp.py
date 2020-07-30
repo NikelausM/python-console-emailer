@@ -20,7 +20,7 @@ class Port(IntEnum):
 # Emailer class
 class Emailer:
     def validateEmail(self, email):
-        "Validate that email is grammatically correct. Does not check if it actually exists."
+        """Validate that email is grammatically correct. Does not check if it actually exists."""
         if(re.match(r"[^@]+@[^@]+\.[^@]+", email)):
             return True
         else:
