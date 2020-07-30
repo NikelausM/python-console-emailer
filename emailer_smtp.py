@@ -55,35 +55,63 @@ class Emailer:
                 option = input( "Invalid input, please enter 'y' for yes or 'n' for no: ").lower()
 
     def create_html_body(self):
-        html = "MIME-Version: 1.0\n"
-        html += "Content-Type: text/html\n"
-        html += input("Please enter the html you would like to send in the email (e.g., <h1> Hello, </h1> <p Nice to talk to you!</p>): ")
+        html = "Content-Type: text/html\n"
+        isDone = False
+        while(not isDone):
+            response = input("Please enter the html you would like to send in the email (e.g., <h1> Hello, </h1> <p Nice to talk to you!</p>). When you are done, please enter 'done': ")
+            if(response == "done"):
+                isDone = True
+            else:
+                html += response
         return html
 
     def create_text_body(self):
         text = "Content-Type: text/plain\n"
         isDone = False
-        text = ""
         while(not isDone):
-            response = input(r"Please enter a line of text you would like to send in the email (e.g., Nice talking to you!). When you are done, please enter 'quit': ")
-            if(response == "quit"):
+            response = input(r"Please enter a line of text you would like to send in the email (e.g., Nice talking to you!). When you are done, please enter 'done': ")
+            ended_response = response + "\r\n"
+            if(response == "done"):
                 isDone = True
             else:
-                text += response + "\r\n"
+                text += ended_response
         return text
 
+    def body_type_check(self, choice):
+        """Check if choice of email body content is valid, and create email body content if valid
+        
+        Key arguments:
+        choice (str): The type of content being appended to the email body.
+        """
+        if(choice == "text"):
+            self.body += "\n"
+            self.body += "--boundary-string" + "\n"
+            self.body += "MIME-Version: 1.0\n"
+            self.body += self.create_text_body()
+        elif(choice == "html"):
+            self.body += "\n"
+            self.body += "--boundary-string" + "\n"
+            self.body += "MIME-Version: 1.0\n"
+            self.body += self.create_html_body()
+        else:
+            print("please enter a valid input [text, html, done]")
+            return
+
+        self.body += "\n"
+
     def create_body(self):
-        hasChosen = False
-        while(not hasChosen):
-            choice = input("Would you like to send an text [text] or html [html] email? ")
-            if(choice == "text"):
-                self.body = self.create_text_body()
-                hasChosen = True
-            elif(choice == "html"):
-                self.body = self.create_html_body()
-                hasChosen = True
+        """Create body of email"""
+        isDone = False
+        self.body = "Content-Type: multipart/mixed; boundary=\"boundary-string\"" + "\n"
+        while(not isDone):
+            choice = input("Would you like to send an text [text] or html [html] email? If you are done, enter 'done': ")
+            if(choice == "done"):
+                self.body += "--boundary-string--" + "\n"
+                isDone = True
             else:
-                print("please enter a valid input [text or html]")
+                self.body_type_check(choice)
+
+        print("final email body: \n", self.body)
 
     def create_email(self):
         """Create an email"""
@@ -96,12 +124,12 @@ class Emailer:
             isValidEmail = self.validateEmail(self.receiver_email)
 
         # Create email content    
-        self.subject    = "Subject: " + input("Please enter email subject: ") + "\n"
+        self.subject = "Subject: " + input("Please enter email subject: ") + "\n"
 
         # Create email body
         self.create_body()
 
-        self.message    += self.subject + self.body
+        self.message += self.subject + self.body
 
     def send_ssl_email(self):
         """Send an SSL encrypted email"""
