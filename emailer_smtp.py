@@ -172,7 +172,7 @@ if __name__ == "__main__":
     # parse user arguments
     parser = argparse.ArgumentParser(description="Send email")
     required = parser.add_argument_group("required arguments")
-    required.add_argument("-e", "--encryption", type=str, help="email encryption type", required=True)
+    required.add_argument("-e", "--encryption", type=str, help="email encryption type", choices=["ssl", "tls"], required=True)
     args = parser.parse_args()
 
     # Get encryption type
