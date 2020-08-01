@@ -3,7 +3,7 @@ from enum import Enum, IntEnum
 
 # Encryption types
 class Encryption(Enum):
-    """Enumerate email encryption types
+    """Enumerate email encryption types.
 
     Specifies the types of email encryption available.
     """
@@ -14,13 +14,14 @@ class Encryption(Enum):
 # port 465 for SSL encryption
 # port 587 for TLS encryption
 class Port(IntEnum):
+    """Enumerate port integer numbers for email encryption types."""
     SSL = 465
     TLS = 587
 
 # Emailer class
 class Emailer:
     def validateEmail(self, email):
-        """Validate that email is grammatically correct. Does not check if it actually exists."""
+        """Validate that email is grammatically correct using regex. Does not check if it actually exists."""
         if(re.match(r"[^@]+@[^@]+\.[^@]+", email)):
             return True
         else:
@@ -28,8 +29,8 @@ class Emailer:
             return False
 
     def get_user_credentials(self):
+        """Prompt user for their email credentials."""
 
-        """Prompt user for their email credentials"""
         isValidEmail = False
         while(not isValidEmail):
             self.sender_email = input("Please enter your email (e.g., john@gmail.com): ")
@@ -39,7 +40,8 @@ class Emailer:
         self.sender_pass = getpass.getpass("enter your password: ")
 
     def set_display_name(self):
-        """Set optional display name"""
+        """Set optional display name."""
+
         option = input(f"Do you want to include a display name for the email (email will show as from {self.sender_email} otherwise [y/n]: ").lower()
         isInputValid = False
         while(not isInputValid):
@@ -55,6 +57,8 @@ class Emailer:
                 option = input( "Invalid input, please enter 'y' for yes or 'n' for no: ").lower()
 
     def create_html_body(self):
+        """Create HTML section of the body of the email."""
+
         html = "Content-Type: text/html\n"
         isDone = False
         while(not isDone):
@@ -66,6 +70,8 @@ class Emailer:
         return html
 
     def create_text_body(self):
+        """Create text section of the body of the email."""
+
         text = "Content-Type: text/plain\n"
         isDone = False
         while(not isDone):
@@ -78,7 +84,7 @@ class Emailer:
         return text
 
     def body_type_check(self, choice):
-        """Check if choice of email body content is valid, and create email body content if valid
+        """Check if choice of email body content is valid, and create email body content if valid.
         
         Key arguments:
         choice (str): The type of content being appended to the email body.
@@ -100,7 +106,8 @@ class Emailer:
         self.body += "\n"
 
     def create_body(self):
-        """Create body of email"""
+        """Create body of email."""
+
         isDone = False
         self.body = "Content-Type: multipart/mixed; boundary=\"boundary-string\"" + "\n"
         while(not isDone):
@@ -114,7 +121,8 @@ class Emailer:
         print("final email body: \n", self.body)
 
     def create_email(self):
-        """Create an email"""
+        """Create an email with a subject and a body."""
+
         self.set_display_name()
 
         # Get receiver email
@@ -132,8 +140,8 @@ class Emailer:
         self.message += self.subject + self.body
 
     def send_ssl_email(self):
-        """Send an SSL encrypted email"""
-        print("sending ssl email")
+        """Send an SSL encrypted email."""
+
         # Connect
         # Create a secure SSL context
         context_ssl = ssl.create_default_context()
@@ -142,8 +150,8 @@ class Emailer:
             server.sendmail(self.sender_email, self.receiver_email, self.message)
 
     def send_tls_email(self):
-        """Send a TLS encrypted email"""
-        print("sending tls email")
+        """Send a TLS encrypted email."""
+
         # Connect 
         with smtplib.SMTP("smtp.gmail.com", port=int(Port.TLS)) as server:
                 server.starttls()
@@ -156,6 +164,7 @@ class Emailer:
         Keyword arguments:
         encryption_type (Encryption): the type of email encryption (default SSL)
         """
+        
         try:
             if(not isinstance(encryption_type, Encryption)):
                 raise TypeError("Invalid email encryption type")
