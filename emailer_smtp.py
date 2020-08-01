@@ -15,6 +15,7 @@ class Encryption(Enum):
 # port 587 for TLS encryption
 class Port(IntEnum):
     """Enumerate port integer numbers for email encryption types."""
+    
     SSL = 465
     TLS = 587
 
@@ -164,7 +165,7 @@ class Emailer:
         Keyword arguments:
         encryption_type (Encryption): the type of email encryption (default SSL)
         """
-        
+
         try:
             if(not isinstance(encryption_type, Encryption)):
                 raise TypeError("Invalid email encryption type")
