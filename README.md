@@ -19,6 +19,24 @@ The purpose of this mini-project was to gain a greater understanding of how emai
 - Sending multi-part email
   - Able to create multiple text and/or html email body sections
 
+## Setup
+In the command line:
+```
+python emailer_smtp.py -e ssl
+```
+or,
+```
+python emailer_smtp.py -e tls
+```
+for help, enter:
+```
+python emailer_smtp.py -h
+```
+or,
+```
+python emailer_smtp.py --help
+```
+
 ## Technologies
 - [Python 3.8.3](https://www.python.org/downloads/release/python-383/)
 - [smtplib](https://docs.python.org/3/library/smtplib.html)
