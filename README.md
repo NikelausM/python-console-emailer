@@ -39,7 +39,7 @@ or,
 ```
 python emailer_smtp.py -e tls
 ```
-for help, enter:
+For help, enter:
 ```
 python emailer_smtp.py -h
 ```
