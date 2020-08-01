@@ -19,6 +19,17 @@ The purpose of this mini-project was to gain a greater understanding of how emai
 - Sending multi-part email
   - Able to create multiple text and/or html email body sections
 
+## Screenshots
+
+### Console Command Example
+<img src="./console_snapshot.PNG" alt="Screenshot of console user interface being used for the python console email application">
+
+### Email in Recipient's Inbox
+<img src="./email_inbox_snapshot.PNG" alt="Screenshot of the email in the recipient's inbox">
+
+### Email Message
+<img src="./email_snapshot.PNG" alt="Screenshot of the email when it has been opened">
+
 ## Setup
 In the command line:
 ```
