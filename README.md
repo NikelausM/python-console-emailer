@@ -1,9 +1,9 @@
 # Phython Console Emailer
 
 ## Table of Contents
-- Introduction
-- Features
-- Technologies
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies](#technologies)
 
 ## Introduction
 Python console emailer is a console (terminal) based python application that allows the user to sign in to their email and send emails to others using the email encryption type of their choice ([SSL](https://www.techopedia.com/definition/29747/secure-socket-layer-encryption-ssl-encryption) or [TLS](https://www.techopedia.com/definition/4143/transport-layer-security-tls)). The application allows the user to insert multiple text or html sections in the email via the command line (terminal).
