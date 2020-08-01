@@ -1,4 +1,4 @@
-# Phython Console Emailer
+# Python Console Emailer
 
 ## Table of Contents
 - [Introduction](#introduction)
