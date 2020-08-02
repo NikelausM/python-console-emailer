@@ -3,6 +3,8 @@
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
+- [Screenshots](#screenshots)
+- [Setup](#setup)
 - [Technologies](#technologies)
 
 ## Introduction
