@@ -1,10 +1,12 @@
+<p align="center"><img src="./images/logos/email-from-python-script.jpg" alt="Email From Python Logo." width=50%><p>
+
 # Python Console Emailer
 
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
 - [Screenshots](#screenshots)
-- [Setup](#setup)
+- [Launch](#launch)
 - [Technologies](#technologies)
 
 ## Introduction
@@ -24,15 +26,15 @@ The purpose of this mini-project was to gain a greater understanding of how emai
 ## Screenshots
 
 ### Console Command Example
-<img src="./console_snapshot.PNG" alt="Screenshot of console user interface being used for the python console email application">
+<img src="./images/screenshots/console_snapshot.PNG" alt="Screenshot of console user interface being used for the python console email application">
 
 ### Email in Recipient's Inbox
-<img src="./email_inbox_snapshot.PNG" alt="Screenshot of the email in the recipient's inbox">
+<img src="./images/screenshots/email_inbox_snapshot.PNG" alt="Screenshot of the email in the recipient's inbox">
 
 ### Email Message
-<img src="./email_snapshot.PNG" alt="Screenshot of the email when it has been opened">
+<img src="./images/screenshots/email_snapshot.PNG" alt="Screenshot of the email when it has been opened">
 
-## Setup
+## Launch
 In the command line:
 ```
 python emailer_smtp.py -e ssl
